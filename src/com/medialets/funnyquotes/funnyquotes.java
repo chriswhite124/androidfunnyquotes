@@ -3,6 +3,8 @@ package com.medialets.funnyquotes;
 import android.app.Activity;
 import android.os.Bundle;
 
+buildbreak
+
 public class funnyquotes extends Activity {
     /** Called when the activity is first created. */
     @Override
