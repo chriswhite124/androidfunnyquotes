@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-break the build
 
 public class funnyquotes extends Activity {
     /** Called when the activity is first created. */
