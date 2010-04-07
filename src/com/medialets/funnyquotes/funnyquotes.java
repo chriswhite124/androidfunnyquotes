@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 public class funnyquotes extends Activity {
     /** Called when the activity is first created. */
+    
+    String BUILD_NUMBER_STRING = "1.0.3";
 
     
     String[] quotes =  {"Friendship is like peeing on yourself: everyone can see it, but only you get the warm feeling that it brings.",

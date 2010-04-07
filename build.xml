@@ -289,6 +289,20 @@
         <echo>   uninstall: uninstall the application from a running emulator or</echo>
         <echo>              device.</echo>
     </target>
+    
+    <!-- CALL THIS ONLY WHEN YOU WANT BUILD NUMBER UPDATED AND COMMIT THE BUILD PROPERTIES FILE-->
+    <target name="update_build_num">
+        <propertyfile file="build.properties" comment="Updating Track Number">
+            <entry key="build.Number" type="int" operation="+" default="1" />
+        </propertyfile>
+    </target>
+    
+    <target name="replace_build_number">
+        <replaceregexp file=".\src\com\medialets\funnyquotes\funnyquotes.java">
+            <regexp pattern="BUILD_NUMBER_STRING = &quot;[\d].[\d].[\d]+"/>
+            <substitution expression="BUILD_NUMBER_STRING = &quot;1.0.${build.Number}" />
+        </replaceregexp>
+    </target>
 
     <property name="findbugs.home" value="/Developer/Platforms/findbugs" />
     
@@ -298,7 +312,7 @@
         </classpath>
     </taskdef>
     
-    <target name="findbugs-debug" depends="debug">
+    <target name="findbugs-debug" depends="replace_build_number, debug">
     <findbugs home="${findbugs.home}" output="xml:withMessages" outputFile="findbugs.xml" reportLevel="low" jvmargs="-Xmx4096m">
     <auxClasspath path="${sdk.dir}/platforms/android-1.5/android.jar" />
       <sourcePath path="./src" />
@@ -306,7 +320,7 @@
     </findbugs>
   </target>
   
-  <target name="findbugs-release" depends="release">
+  <target name="findbugs-release" depends="replace_build_number, release">
     <findbugs home="${findbugs.home}" output="xml:withMessages" outputFile="findbugs.xml" reportLevel="low" jvmargs="-Xmx4096m">
     <auxClasspath path="${sdk.dir}/platforms/android-1.5/android.jar" />
       <sourcePath path="./src" />
